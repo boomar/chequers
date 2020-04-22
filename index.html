@@ -1,0 +1,86 @@
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded -->
+  <div class="arjs-loader">
+    <div>Loading, please wait a bit ...</div>
+  </div>
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    <!-- we use cors proxy to avoid cross-origin problems -->
+    <a-nft
+      type="nft"
+      url="https://boomar.github.io/hancock/tracking_image/nightingale_hospital"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      
+      <!--Text-->
+      <!--<a-text value="Aaaachooo !" color="red" position="100 60 4" scale="150 150 150" side="double"></a-text>-->
+      
+      <!--Hancock-->
+      <a-entity position="120 20 3">
+      <a-image src="hancock_nose.png" scale = "0.5 0.5 0.5" width="549" height="1024" transparent="true" alpha-test="0.5"></a-image>
+      </a-entity>
+      
+      <!--Nurse-->
+      <a-entity position="420 0 2">
+      <a-image src="head_nurse.png" scale = "0.6 0.6 0.6" width="373" height="628" transparent="true" alpha-test="0.4"></a-image>
+      </a-entity>
+      
+      <!--Staff-->
+      <a-entity position="170 10 1">
+      <a-image src="staff.png" scale = "0.6 0.6 0.6" width="824" height="377" transparent="true" alpha-test="0.4"></a-image>
+      </a-entity>
+      
+      <!--Cloud-->
+      <a-entity position="500 350 0"  animation="property: position; to: -100 350 0; dur: 10000; easing: linear; loop: true">
+      <a-image src="cloud.png" scale = "0.7 0.7 0.7" width="200" height="97" transparent="true" alpha-test="0.5"></a-image>
+      </a-entity>
+              
+      <!--Sneeze-->
+      <a-entity position="250 130 5"  animation="property: position; to: 350 600 5; dur: 1500; easing: linear; loop: true">
+      <a-image src="sneeze.png" scale = "1.4 1.4 1.4" width="109" height="121" transparent="true" alpha-test="0.5"></a-image>
+      </a-entity>
+        
+    </a-nft>
+    <a-entity camera></a-entity>
+    
+  <!--sound-->
+  <a-sound src="crowd.mp3" autoplay="true" loop="true"></a-sound>
+  <a-sound src="sneeze.mp3" autoplay="true" loop="true"></a-sound>
+    
+      
+  </a-scene>
+  
+  
+  
+</body>
